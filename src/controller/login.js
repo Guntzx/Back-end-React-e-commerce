@@ -10,14 +10,14 @@ export const login = async (req, res) => {
         const { email, password } = req.body;
         const user = await User.findOne({ email: email})
         if(!user) {
-            res.status(401).send('Usuario y/o contraseña incorrecta')
+            res.status(401).json({message: 'Usuario y/o contraseña incorrecta'})
         } else {
             const isMatch = await bcrypt.compare(password, user.password)
             if(isMatch) {
                 const signed = signToken(user._id)
                 res.status(200).send(signed)
             } else {
-                res.status(401).send('Usuario y/o contraseña incorrect')
+                res.status(401).json({message: 'Usuario y/o contraseña incorrecta'})
             }
         }
     } catch (e) {
