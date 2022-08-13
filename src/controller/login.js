@@ -15,12 +15,13 @@ export const login = async (req, res) => {
             const isMatch = await bcrypt.compare(password, user.password)
             if(isMatch) {
                 const signed = signToken(user._id)
-                res.status(200).send(signed)
+                res.status(200).json({token: signed})
             } else {
                 res.status(401).json({message: 'Usuario y/o contraseña incorrecta'})
             }
         }
     } catch (e) {
+        console.error(e)
         return res.status(500).send(e.message)
     }
 }

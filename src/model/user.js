@@ -2,7 +2,8 @@ import mongoose from 'mongoose'
 
 export const User = mongoose.model('User',{
     name: { type: String, required: true },
-    email: { type: String, required: true, minLength: 5 },
+    lastname: { type: String, required: true },
+    email: { type: String, required: true, minLength: 4 },
     password: { type: String, required: true, minLength: 5 },
     salt : { type: String, required: true}
 })
