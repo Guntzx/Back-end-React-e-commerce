@@ -58,7 +58,7 @@ export const GetSaveImg = async (req, res) => {
   try {
     const { email } = req.user;
 
-    const images = await Image.find({ email: email });
+    const images = await Image.find({ user_email: email });
 
     if (!images) {
       res.status(404).json({ message: "Aun no guardas imagenes" });

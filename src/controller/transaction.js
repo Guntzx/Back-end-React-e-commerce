@@ -1,5 +1,6 @@
 import { WebpayPlus } from "transbank-sdk";
 import { Transaction_status, Transaction_record } from "../model/shopping";
+import { Image } from "../model/img";
 
 export const confirm_transaction = async (req, res) => {
   try {
@@ -27,6 +28,8 @@ export const confirm_transaction = async (req, res) => {
       { id_img: confirm_transaction.buy_order },
       { status: confirm_transaction.status }
     );
+
+    await Image.deleteOne({ img_id: confirm_transaction.buy_order })
 
     const img_user = await Transaction_record.findOne({
       id_img: confirm_transaction.buy_order,
