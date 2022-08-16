@@ -30,7 +30,7 @@ export const SaveImg = async (req, res) => {
 export const BuyImg = async (req, res) => {
   try {
     const { email } = req.user;
-    const { buyOrder, amount, returnUrl, ObjectBuy, img_download } = req.body;
+    const { buyOrder, amount, returnUrl, ObjectBuy } = req.body;
     const sessionId = email;
 
     await Transaction_record.create({
@@ -38,7 +38,6 @@ export const BuyImg = async (req, res) => {
       id_img: buyOrder,
       url_img: ObjectBuy,
       status: "NOTBUY",
-      //url_download: img_download,
     });
 
     const createResponse = await new WebpayPlus.Transaction().create(

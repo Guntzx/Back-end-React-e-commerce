@@ -5,7 +5,6 @@ export const Transaction_record = mongoose.model("Transaction_record", {
   id_img: { type: String, required: true },
   url_img: { type: String, required: true },
   status: { type: String, required: true },
-  //url_download: { type: String, required: true },
 });
 
 export const Transaction_status = mongoose.model("Transaction_status", {
