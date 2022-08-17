@@ -87,3 +87,19 @@ export const GetBuyImage = async (req, res) => {
     return res.status(500).json({ message: "Ocurrio un error: " + e.message });
   }
 };
+
+export const DeleteImgSave = async (req, res) => {
+  try {
+
+    const img_delete_by_id = await Image.deleteOne({ img_id: req.body.id_img })
+
+    if(img_delete_by_id) {
+      return res.status(200).json({ delete: true })
+    }
+
+    return res.status(400).json({ delete: false })
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ message: "Ocurrio un error: " + e.message })
+  }
+}
